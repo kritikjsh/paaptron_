@@ -1,0 +1,134 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+  display: flex;
+}
+
+/* Header Bar */
+.header-bar {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  z-index: 1000;
+}
+
+.header-bar h1 {
+  margin: 0 auto;
+  font-size: 24px;
+}
+
+.menu-icon {
+  font-size: 24px;
+  background: none;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+/* Sidebar / App Bar */
+.sidebar {
+  width: 250px;
+  background-color: #444;
+  color: white;
+  height: 100vh;
+  position: fixed;
+  top: 50px; /* Leaves space for the header */
+  left: -250px; /* Initially hidden */
+  transition: left 0.3s ease;
+  padding: 20px 10px;
+  z-index: 999;
+}
+
+.sidebar.active {
+  left: 0; /* Sidebar becomes visible */
+}
+
+.sidebar nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar nav ul li {
+  margin: 15px 0;
+}
+
+.sidebar nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+.sidebar nav ul li a:hover {
+  color: #ffa500;
+}
+
+/* Main Content */
+.content {
+  margin-left: 0; /* Initially no space for the sidebar */
+  padding: 80px 20px; /* Leaves space for the header */
+  width: 100%;
+  transition: margin-left 0.3s ease;
+}
+
+.content.sidebar-active {
+  margin-left: 250px; /* Adjust for the visible sidebar */
+}
+
+.container {
+  text-align: center;
+}
+
+h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Functionalities Grid */
+.functionalities-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 buttons per row */
+  gap: 20px; /* Spacing between items */
+  padding: 20px;
+}
+
+.func-button {
+  background-color: #fff;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  cursor: pointer;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.func-button img {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 10px;
+}
+
+.func-button span {
+  display: block;
+  font-size: 14px;
+  color: #555;
+}
+
+.func-button:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.func-button:active {
+  transform: translateY(2px);
+}

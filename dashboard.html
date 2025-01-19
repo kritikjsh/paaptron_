@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PapaTron Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <h1>Overview Dashboard</h1>
+        </header>
+        <div class="dashboard-main">
+            <!-- Left Panel -->
+            <div class="left-panel">
+                <div class="widget temperature">
+                    <h3>Temperature</h3>
+                    <canvas id="temperature-chart"></canvas>
+                </div>
+                <div class="widget pulse">
+                    <h3>Pulse</h3>
+                    <canvas id="pulse-chart"></canvas>
+                </div>
+            </div>
+
+            <!-- Center Panel -->
+            <div class="center-panel">
+                <div class="widget health-analysis">
+                    <h3>
+                        <a href="weekly-analysis.html">Health Analysis (Click for Details)</a>
+                    </h3>
+                    <p>Your baby's health at a glance - stay informed, stay assured!</p>
+                </div>
+                <div class="widget emotion-analysis">
+                    <h3>  <a href="https://u77saz4v7a.execute-api.us-east-1.amazonaws.com/prod/latest-result">Emotional Analysis (Click for Details)</a></h3>
+                    <p>Track and understand your baby's emotions and expressions for a better care and connection. </p>
+                </div>
+                <div class="widget cry-analysis">
+                    <h3>Cry Analysis</h3>
+                    <p>Monitor and decode your baby's cries to understand their needs effortlessly</p>
+                </div>
+                <div class="widget activity-log">
+                    <h3>Activity Log</h3>
+                    <p>Track your baby's daily daily activities with a detailed and organized log at a glance.</p>
+                    <table id="activity-log-table">
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>Activity</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Right Panel -->
+            <div class="right-panel">
+                <div class="widget spo2">
+                    <h3>SpO2</h3>
+                    <canvas id="spo2-line-chart"></canvas>
+                </div>
+                <div class="widget baseline-difference">
+                    <button onclick="window.location.href='time-difference.html'">Measure Baseline Time Difference</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles1.css">
+  <title>PapaTron Functionalities</title>
+</head>
+<body>
+  <!-- Header Bar -->
+  <header class="header-bar">
+    <button class="menu-icon" onclick="toggleSidebar()">☰</button>
+    <h1>PapaTron</h1>
+  </header>
+
+  <!-- Sidebar / App Bar -->
+  <aside class="sidebar" id="sidebar">
+    <nav>
+      <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="functionalities.html">Functionalities</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="content">
+    <div class="container">
+      <h2>Functionalities</h2>
+      <div class="functionalities-grid">
+        <button class="func-button" onclick="redirectToLiveAnalysis()">
+          <img src="live.avif" alt="Live Video">
+          <span>Live Video</span>
+        </button>
+        <button class="func-button" onclick="redirectTo('health-analysis.html')">
+          <img src="health.png" alt="Health Analysis">
+          <span>Health Analysis</span>
+        </button>
+        <button class="func-button" onclick="redirectToEmotionAnalysis()">
+          <img src="facial.png" alt="Emotion Analysis">
+          <span>Emotion Analysis</span>
+        </button>
+        
+        <button class="func-button" onclick="redirectTo('activityLog.html')">
+          <img src="activity.png" alt="Activity Log">
+          <span>Activity Log</span>
+        </button>
+        <button class="func-button" onclick="redirectTo('cryAnalysis.html')">
+          <img src="cry 2.png" alt="Cry Analysis">
+          <span>Cry Analysis</span>
+        </button>
+        <button class="func-button" onclick="redirectTo('dashboard.html')">
+          <img src="overview.jpg" alt="Overview">
+          
+          <span>Overview</span>
+        </button>
+      </div>
+    </div>
+  </main>
+  <script src="script1.js"></script>
+</body>
+</html>

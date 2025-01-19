@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baby Monitoring Data </title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+
+
+h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-top: 30px;
+    color: #333;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        canvas {
+            max-width: 100%;
+            height: 500px;  /* Set height for the graph */
+            margin: 20px auto;
+            display: block;  /* Center the graph */
+        }
+    </style>
+</head>
+<body>
+    <h1>Baby Monitoring Data (Day Wise)</h1>
+   
+    <table id="data-table">
+        <thead>
+            <tr>
+                <th>Temperature (°C)</th>
+                <th>Pulse (BPM)</th>
+                <th>SpO2 (%)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Dynamic rows will be populated here -->
+        </tbody>
+    </table>
+
+
+    <canvas id="barChart"></canvas>
+
+
+    <script>
+        // Define the API endpoint
+        const apiUrl = 'https://cphd0xe3m7.execute-api.eu-north-1.amazonaws.com/API/BABY'; // Replace with your API endpoint
+
+
+        // Function to fetch data from the API
+        async function fetchData() {
+            try {
+                const response = await fetch(apiUrl);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                console.log('API Response:', data); // Debug: Log the API response
+                populateTable(data);
+                createBarGraph(data);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+
+
+        // Function to populate the table with data
+        function populateTable(data) {
+            const tableBody = document.querySelector('#data-table tbody');
+            tableBody.innerHTML = ''; // Clear existing rows
+
+
+            const items = Array.isArray(data) ? data : data.data || [];
+
+
+            items.forEach(item => {
+                const row = document.createElement('tr');
+
+
+                const temperature = item['Temperature (°C)'] || 'N/A';
+                const pulse = item['Pulse (BPM)'] || 'N/A';
+                const spO2 = item['SpO2 (%)'] || 'N/A';
+
+
+                const temperatureCell = document.createElement('td');
+                temperatureCell.textContent = temperature;
+                row.appendChild(temperatureCell);
+
+
+                const pulseCell = document.createElement('td');
+                pulseCell.textContent = pulse;
+                row.appendChild(pulseCell);
+
+
+                const spO2Cell = document.createElement('td');
+                spO2Cell.textContent = spO2;
+                row.appendChild(spO2Cell);
+
+
+                tableBody.appendChild(row);
+            });
+        }
+
+
+        // Function to create a bar graph
+        function createBarGraph(data) {
+            const items = Array.isArray(data) ? data : data.data || [];
+
+
+            // Extract data for the graph
+            const labels = items.map((_, index) => `Data ${index + 1}`);
+            const temperatures = items.map(item => parseFloat(item['Temperature (°C)']) || 0);
+            const pulses = items.map(item => parseFloat(item['Pulse (BPM)']) || 0);
+            const spO2Values = items.map(item => parseFloat(item['SpO2 (%)']) || 0);
+
+
+            // Create the bar graph using Chart.js
+            const ctx = document.getElementById('barChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'Temperature (°C)',
+                            data: temperatures,
+                            backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Pulse (BPM)',
+                            data: pulses,
+                            backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'SpO2 (%)',
+                            data: spO2Values,
+                            backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top'
+                        },
+                        title: {
+                            display: true,
+                            text: 'Baby Monitoring Data Overview'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+
+        // Call the fetchData function to load data and graph when the page loads
+        fetchData();
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,94 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7fa;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+}
+
+
+h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-top: 30px;
+    color: #333;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+
+table {
+    border-collapse: collapse;
+    width: 80%;
+    margin: 20px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #ffffff;
+}
+
+
+th, td {
+    padding: 12px 20px;
+    text-align: center;
+    font-size: 1rem;
+}
+
+
+th {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+
+td {
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #ddd;
+    transition: background-color 0.3s ease;
+}
+
+
+td:hover {
+    background-color: #f1f1f1;
+}
+
+
+canvas {
+    max-width: 80%;
+    height: 500px;
+    margin: 30px auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    display: block;
+}
+
+
+@media screen and (max-width: 768px) {
+    table {
+        width: 95%;
+    }
+    canvas {
+        width: 90%;
+    }
+}
+
+
+@media screen and (max-width: 480px) {
+    h1 {
+        font-size: 2rem;
+    }
+    table {
+        width: 100%;
+    }
+    canvas {
+        width: 100%;
+    }
+}
